@@ -1,0 +1,13 @@
+while ($true) {
+    $shell = Read-Host -Prompt "<";
+    if (($shell -Split " ")[0] -eq "clear") {
+        Clear-Host;
+        if (($shell -Split " ")[1..1] -eq "-echo") {
+            Write-Host "0" -ForegroundColor Blue;
+        };
+    };
+
+    if (($shell -Split " ")[0] -eq "echo") {
+        ($shell -replace '(.*?)echo (.*)', '$2')
+    };
+}

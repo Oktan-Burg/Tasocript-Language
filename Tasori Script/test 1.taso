@@ -1,0 +1,4 @@
+echo Bill: Hello
+wait 
+clear -echo
+echo Jake: Hello Wsp
