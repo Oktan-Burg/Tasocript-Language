@@ -13,6 +13,8 @@
 # Quick Setup
 
 ![Home Page](/img/banner.png "Home Page")
+# Preview Version 0.1
+https://user-images.githubusercontent.com/80918992/170898298-ebadedd5-5cae-4350-9cab-bdee0c99da12.mp4
 
 ## Available Commands
 
