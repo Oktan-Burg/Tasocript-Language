@@ -6,7 +6,7 @@
 
 - [Youtube Channel](https://www.youtube.com/channel/UCEQPnxJLRZ0AFVbspZM3oNg "Kyoto_Tasori")
 
-- [Discord Server](<Homepage url> "Support and Community Server")
+- [Discord Server](https://discord.gg/ZwzWuzRtAk "Support and Community Server")
 
 - [Bugs](https://github.com/Oktan-Burg/Tasocript-Language/issues "Issues Page")
 
