@@ -29,7 +29,7 @@ if ((Get-Content .\status.log)[0] -eq '1') {
                 $data       = (Get-Content $args[0])
                 
                 foreach ($line in $data) {
-                    if (($line -split " ")[0] -eq "set") {
+                    if (($line -split " ")[0] -eq "local") {
                         if (($line -split " ")[1]) {
                             $vName  = ($line -split " ")[1]
                             
