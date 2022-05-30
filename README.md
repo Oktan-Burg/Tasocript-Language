@@ -9,6 +9,8 @@
 - [Discord Server](https://discord.gg/ZwzWuzRtAk "Support and Community Server")
 
 - [Bugs](https://github.com/Oktan-Burg/Tasocript-Language/issues "Issues Page")
+- [Written Assistance](https://github.com/Oktan-Burg/Tasocript-Language/wiki)
+- [Discussions](https://github.com/Oktan-Burg/Tasocript-Language/discussions)
 
 # Quick Setup
 
