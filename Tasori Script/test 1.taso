@@ -1,4 +1,3 @@
-echo Bill: Hello
-wait 
-clear -echo
-echo Jake: Hello Wsp
+echo Hello, World...
+wait 5
+echo World: ello 
