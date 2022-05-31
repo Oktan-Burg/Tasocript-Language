@@ -30,7 +30,7 @@ if ((Get-Content .\status.log)[0] -eq '1') {
                 
                 foreach ($line in $data) {
                     if (($line -split " ")[0] -eq "write") {
-                        if ((($line -split '"')[2] -split " ")[0]) {
+                        if (($line -split '"')[2]) {
                             $data = (($line -split '"')[2] -split " ")
                             $text = ([regex]::Matches($line, '".*?"').Value -replace '"')
                             $Global:final = ([regex]::Matches($line, '".*?"').Value -replace '"')
