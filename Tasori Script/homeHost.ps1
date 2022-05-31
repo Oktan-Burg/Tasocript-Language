@@ -1,5 +1,5 @@
 Clear-Host
-$variables   = New-Object -TypeName psobject
+$variables   = [System.Collections.ArrayList]::new()
 if ((Get-Content .\status.log)[0] -eq '0') {
     Write-Host @"
 ###############################################
@@ -29,17 +29,47 @@ if ((Get-Content .\status.log)[0] -eq '1') {
                 $data       = (Get-Content $args[0])
                 
                 foreach ($line in $data) {
+                    if (($line -split " ")[0] -eq "write") {
+                        if ((($line -split '"')[2] -split " ")[0]) {
+                            $data = (($line -split '"')[2] -split " ")
+                            $text = ([regex]::Matches($line, '".*?"').Value -replace '"')
+                            $Global:final = ([regex]::Matches($line, '".*?"').Value -replace '"')
+                            $Global:color = "White" 
+                            foreach ($arg in $data) {
+                                if ((($arg -split ' ')[0]).StartsWith("%")) {
+                                    $name = (($arg -split ' ')[0] -replace "%",'')
+                                    foreach ($var in $variables) {
+                                        if (($var -split "/\")[0] -eq $name) {
+                                            $value = ($var -split "/\")[1]
+                                        }
+                                    }
+                                    $Global:final = ($text -replace "{$($name)}",$value)
+                                }
+                                if ((($arg -split ' ')[0]).StartsWith("FG-")) {
+                                    if (($arg -split "-")[1]) {
+                                        foreach ($color in [Enum]::GetValues([System.ConsoleColor])) {
+                                            if ($arg.ToLower() -eq $color.ToLower()) {
+                                                $Global:color = "$arg" 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Write-Host "$Global:final" -ForegroundColor $Global:color
+                        } else {
+                            Write-Host ([regex]::Matches($line, '".*?"').Value -replace '"')
+                        }
+                    }
                     if (($line -split " ")[0] -eq "local") {
                         if (($line -split " ")[1]) {
                             $vName  = ($line -split " ")[1]
-                            
                             if (($line -split " ")[2]) {
                                 $vValue  = ($line -split " ")[2]
                             } else {
                                 Write-Host "<:> Error, variable value must be provided." -ForegroundColor DarkRed; exit 500;
                             }
                             try {
-                                $variables | Add-Member -MemberType NoteProperty -Name $vName -Value $vValue
+                                $variables.Add("$vName/\$vValue")
                             } catch {
                                 Write-Host "<:> Error, variable already exists. Try: reset $vName (optional)$vValue" -ForegroundColor DarkRed; exit 500;
                             }
